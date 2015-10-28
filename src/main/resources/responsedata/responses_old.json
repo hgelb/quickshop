@@ -1,0 +1,58 @@
+{
+    "responses": [
+        {
+            "key": {
+                "category": "9355",
+                "site": 0
+            },
+            "getMetadataResponse": {
+                "ack": "Success",
+                "version": "1.0.0",
+                "timestamp": "2015-10-18T13:11:54.461Z",
+                "recommendations": {
+                    "siteId": "77",
+                    "recommendation": [
+                        {
+                            "categoryId": "9355",
+                            "lastModifiedDate": "2015-10-17T02:54:49.000-07:00",
+                            "tag": [
+                                {
+                                    "name": "Marke",
+                                    "properties": {
+                                        "property": [
+                                            {
+                                                "name": "DisableAsVariant",
+                                                "value": "true"
+                                            },
+                                            {
+                                                "name": "DataType",
+                                                "value": "string"
+                                            },
+                                            {
+                                                "name": "Precision",
+                                                "value": "0"
+                                            }
+                                        ]
+                                    },
+                                    "values": {
+                                        "tagValue": [
+                                            {
+                                                "value": "Markenlos"
+                                            },
+                                            {
+                                                "value": "Agfa"
+                                            },
+                                            {
+                                                "value": "Avision"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
