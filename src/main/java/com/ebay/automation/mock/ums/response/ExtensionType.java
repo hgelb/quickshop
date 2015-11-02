@@ -3,13 +3,10 @@ package com.ebay.automation.mock.ums.response;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+
 import org.w3c.dom.Element;
+
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -17,22 +14,44 @@ import org.w3c.dom.Element;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExtensionType", propOrder = { "id", "version", "contentType",
-		"value", "any" })
 public class ExtensionType {
 
-	@XmlElement(required = true)
-	@XmlSchemaType(name = "positiveInteger")
+
 	protected BigInteger id;
-	@XmlElement(required = true)
+
 	protected String version;
-	@XmlElement(required = true)
+
 	protected String contentType;
-	@XmlElement(required = true)
+
 	protected String value;
-	@XmlAnyElement(lax = true)
+
 	protected List<Object> any;
+	
+	
+	
+
+	public ExtensionType() {
+		
+	}
+	
+	
+
+	public ExtensionType(BigInteger id, String version, String contentType,
+			String value, List<Object> any) {
+		super();
+		this.id = id;
+		this.version = version;
+		this.contentType = contentType;
+		this.value = value;
+		this.any = any;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("id", id).add("version", version).add("contentType", contentType).add("value", value).add("any", any).toString();
+	}
 
 	/**
 	 * Gets the value of the id property.

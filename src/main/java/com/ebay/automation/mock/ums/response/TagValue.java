@@ -1,10 +1,6 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -12,22 +8,27 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TagValue", propOrder = { "value", "tvalue", "properties",
-		"relationships" })
 public class TagValue {
 
-	@XmlElement(required = true)
-	protected String value;
-	protected String tvalue;
-	protected Properties properties;
-	protected Relationships relationships;
-	@XmlAttribute(name = "datasource")
-	protected DataSource datasource;
 
+	protected String value;
+	
+	protected String tvalue;
+	
+	protected Properties properties;
+	
+	protected Relationships relationships;
+
+	protected DataSource datasource;
 	
 	public TagValue() {
 
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("value", value).add("tvalue", tvalue).add("properties", properties)
+				.add("relationships", relationships).add("datasource", datasource).toString();
 	}
 
 	/**

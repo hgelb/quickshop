@@ -1,10 +1,6 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -12,18 +8,21 @@ import javax.xml.bind.annotation.XmlValue;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ErrorParameter", propOrder = { "value" })
 public class ErrorParameter {
 
-	@XmlValue
+
 	protected String value;
-	@XmlAttribute(name = "name")
+
 	protected String name;
 	
 
 	public ErrorParameter() {
 
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("value", value).add("name", name).toString();
 	}
 
 	/**

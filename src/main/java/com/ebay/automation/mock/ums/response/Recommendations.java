@@ -2,9 +2,8 @@ package com.ebay.automation.mock.ums.response;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -12,19 +11,24 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Recommendations", propOrder = { "siteId", "languageId",
-		"recommendation" })
 public class Recommendations {
 
+	
 	protected int siteId;
+	
 	protected Integer languageId;
+	
 	protected List<Recommendation> recommendation;
 	
 	
 
 	public Recommendations() {
 
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("siteId", siteId).add("languageId", languageId).add("recommendation", recommendation).toString();
 	}
 
 	/**

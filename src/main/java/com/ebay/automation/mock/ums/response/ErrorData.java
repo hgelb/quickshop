@@ -2,13 +2,8 @@ package com.ebay.automation.mock.ums.response;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -16,29 +11,53 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ErrorData", propOrder = { "errorId", "domain", "subdomain",
-		"severity", "category", "message", "exceptionId", "parameter" })
 public class ErrorData {
 
 	protected long errorId;
-	@XmlElement(required = true)
+
 	protected String domain;
+	
 	protected String subdomain;
-	@XmlElement(required = true)
+
 	protected ErrorSeverity severity;
-	@XmlElement(required = true)
+
 	protected ErrorCategory category;
-	@XmlElement(required = true)
+
 	protected String message;
-	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-	@XmlSchemaType(name = "token")
+
 	protected String exceptionId;
+	
 	protected List<ErrorParameter> parameter;
 	
 
 	public ErrorData() {
 
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("errorId", errorId).add("domain", domain).
+				add("subdomain", subdomain).add("severity", severity).
+				add("category", category).add("message", message).
+				add("exceptionId", exceptionId).add("parameter", parameter).toString();
+	}
+
+	
+
+
+
+	public ErrorData(long errorId, String domain, String subdomain,
+			ErrorSeverity severity, ErrorCategory category, String message,
+			String exceptionId, List<ErrorParameter> parameter) {
+		super();
+		this.errorId = errorId;
+		this.domain = domain;
+		this.subdomain = subdomain;
+		this.severity = severity;
+		this.category = category;
+		this.message = message;
+		this.exceptionId = exceptionId;
+		this.parameter = parameter;
 	}
 
 	/**
@@ -98,6 +117,8 @@ public class ErrorData {
 	public void setSubdomain(String value) {
 		this.subdomain = value;
 	}
+	
+	
 
 	/**
 	 * Gets the value of the severity property.
@@ -141,6 +162,7 @@ public class ErrorData {
 		this.category = value;
 	}
 
+	
 	/**
 	 * Gets the value of the message property.
 	 * 

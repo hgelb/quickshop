@@ -1,9 +1,10 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import java.util.List;
+
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.google.common.base.MoreObjects;
 
 
 /**
@@ -12,19 +13,36 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "GetMetadataResponse", propOrder = {
-    "recommendations"
-})
 public class GetMetadataResponse extends BaseResponse {
 	
-	@XmlElement(required = true)
+
     protected Recommendations recommendations;
 	
 
     public GetMetadataResponse() {
 		super();
-		// TODO Auto-generated constructor stub
+
+	}
+    
+    
+    
+    public GetMetadataResponse(AckValue ack, ErrorMessage errorMessage, String version,
+    		XMLGregorianCalendar timestamp, List<ExtensionType> extension, Recommendations recommendations) {
+		super(ack, errorMessage, version, timestamp, extension);
+		this.recommendations = recommendations;
+	}
+    
+
+	public GetMetadataResponse(Recommendations recommendations) {
+		super();
+		this.recommendations = recommendations;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("recommendations", recommendations).toString();
 	}
 
 	/**

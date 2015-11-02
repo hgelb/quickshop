@@ -20,7 +20,7 @@ public class ResponseGenerator {
 	public ResponseGenerator() {
 	}
 
-	public GetMetadataResponse getMetadataResponse(int category, int site) {
+	public GetMetadataResponseWrapper getMetadataResponse(int category, int site) {
 		if (site < 0) {
 //			return invalidSiteResponse(site);
 		}
@@ -31,21 +31,20 @@ public class ResponseGenerator {
 		return expectedResponse(category, site);
 	}
 
-	private GetMetadataResponse expectedResponse(int category, int site) {
-		GetMetadataResponse metadataResponse = expectedResponseRepository.getExpectedResponsesByCategoryAndSite(category, site);
+	private GetMetadataResponseWrapper expectedResponse(int category, int site) {
+		GetMetadataResponseWrapper metadataResponse = expectedResponseRepository.getExpectedResponsesByCategoryAndSite(category, site);
 		if (metadataResponse == null) {
 			return expectedResponseRepository.getNoMatchResponse();
 		}
 		return metadataResponse;
 	}
 
-//	private GetMetadataResponse invalidSiteResponse(int site) {
-//		return expectedResponseRepository.getErrorResponse(String.format(
-//				"Invalid Site [%s] in resource path", site));
-//	}
+	private GetMetadataResponseWrapper invalidSiteResponse(int site) {
+		return expectedResponseRepository.getErrorResponse(site);
+	}
 	
 	
-	public String getErrorResponse(int category) {
+	public GetMetadataResponseWrapper getErrorResponse(int category) {
 		return expectedResponseRepository.getErrorResponse(category);
 	}
 

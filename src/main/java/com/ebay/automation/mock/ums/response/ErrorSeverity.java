@@ -1,8 +1,5 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
 
 /**
 *
@@ -10,13 +7,13 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlType(name = "ErrorSeverity", namespace = "http://www.ebay.com/marketplace/services")
-@XmlEnum
 public enum ErrorSeverity {
 
-	@XmlEnumValue("Error")
-	ERROR("Error"), @XmlEnumValue("Warning")
+
+	ERROR("Error"),
+	
 	WARNING("Warning");
+	
 	private final String value;
 
 	ErrorSeverity(String v) {

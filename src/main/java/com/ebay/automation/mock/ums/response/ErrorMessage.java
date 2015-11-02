@@ -2,9 +2,8 @@ package com.ebay.automation.mock.ums.response;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -12,8 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ErrorMessage", propOrder = { "error" })
+
 public class ErrorMessage {
 
 	protected List<ErrorData> error;
@@ -23,6 +21,23 @@ public class ErrorMessage {
 
 	}
 
+
+	public ErrorMessage(List<ErrorData> error) {
+		super();
+		this.error = error;
+	}
+
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("error", error).toString();
+	}
+	
+
+
+	public void setError(List<ErrorData> error) {
+		this.error = error;
+	}
 
 
 
@@ -55,5 +70,7 @@ public class ErrorMessage {
 		}
 		return this.error;
 	}
+	
+	
 
 }

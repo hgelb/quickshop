@@ -1,8 +1,5 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
 
 /**
 *
@@ -10,14 +7,15 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlType(name = "ErrorCategory")
-@XmlEnum
 public enum ErrorCategory {
 
-	@XmlEnumValue("System")
-	SYSTEM("System"), @XmlEnumValue("Application")
-	APPLICATION("Application"), @XmlEnumValue("Request")
+
+	SYSTEM("System"),
+	
+	APPLICATION("Application"),
+	
 	REQUEST("Request");
+	
 	private final String value;
 
 	ErrorCategory(String v) {

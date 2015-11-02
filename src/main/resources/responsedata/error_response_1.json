@@ -1,1 +1,16 @@
-{"errorMessage":[{"error":[{"errorId":["2003"],"domain":["CoreRuntime"],"severity":["Error"],"category":["Request"],"message":["Missing SOA service name header"],"subdomain":["Inbound_Meta_Data"]}]}]}
+{
+    "getMetadataResponse": {
+        "errorMessage": {
+            "error": [
+                {
+                    "errorId": 2003,
+                    "domain": "CoreRuntime",
+                    "subdomain": "Inbound_Meta_Data",
+                    "severity": "Error",
+                    "category": "Request",
+                    "message": "MissingSOAservicenameheader"
+                }
+            ]
+        }
+    }
+}

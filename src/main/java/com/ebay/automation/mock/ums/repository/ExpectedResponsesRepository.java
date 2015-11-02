@@ -1,27 +1,19 @@
 package com.ebay.automation.mock.ums.repository;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
 
 import com.ebay.automation.mock.ums.model.ExpectedResponse;
 import com.ebay.automation.mock.ums.model.ExpectedResponses;
 import com.ebay.automation.mock.ums.model.Key;
-import com.ebay.automation.mock.ums.response.ErrorMessage;
-import com.ebay.automation.mock.ums.response.GetMetadataResponse;
-import com.ebay.automation.mock.ums.response.error.ErrorResponse;
+import com.ebay.automation.mock.ums.response.GetMetadataResponseWrapper;
 import com.ebay.automation.mock.ums.response.error.ErrorResponseCalc;
 import com.ebay.automation.mock.ums.utils.SerializerDeserializer;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 /**
 *
@@ -35,9 +27,9 @@ public class ExpectedResponsesRepository {
 	@Autowired
 	private ApplicationContext context;
 
-	private Map<Key, GetMetadataResponse> expectedResponsesMap = null;
-	private GetMetadataResponse noMatchResponse = null;
-	private String errorResponse = null;
+	private Map<Key, GetMetadataResponseWrapper> expectedResponsesMap = null;
+	private GetMetadataResponseWrapper noMatchResponse = null;
+	private GetMetadataResponseWrapper errorResponse = null;
 
 	private final static String PATH = "responsedata";
 	
@@ -45,8 +37,6 @@ public class ExpectedResponsesRepository {
 		ExpectedResponses exp = getResourcesFromFile();
 		initExpectedResponsesMap(exp.getResponses());
 //		initNoMatchResponse();
-		System.out.println("Expected Responses: " + expectedResponsesMap);
-//		System.out.println("No match response: " + noMatchResponse);
 	}
 
 
@@ -56,50 +46,55 @@ public class ExpectedResponsesRepository {
 				if (expectedResponsesMap.containsKey(expectedResponse.getKey())) {
 					throw new RuntimeException("Response data json contains duplicate categories: "+ expectedResponse.getKey());
 				}
-				expectedResponsesMap.put(expectedResponse.getKey(), expectedResponse.getMetadataResponse());		
+				expectedResponsesMap.put(expectedResponse.getKey(), expectedResponse.getMetadataResponseWrapper());		
 		}
+		System.out.println("Expected Responses: " + expectedResponsesMap);
 	}
 
-	public Map<Key, GetMetadataResponse> getExpectedResponsesMap() {
+	public Map<Key, GetMetadataResponseWrapper> getExpectedResponsesMap() {
 		return expectedResponsesMap;
 	}
 
-	public GetMetadataResponse getExpectedResponsesByCategoryAndSite(
-			int category, int site) {
+	public GetMetadataResponseWrapper getExpectedResponsesByCategoryAndSite(int category, int site) {
 		return expectedResponsesMap.get(new Key(category, site));
 
 	}
 
-	public GetMetadataResponse getNoMatchResponse() {
+	public GetMetadataResponseWrapper getNoMatchResponse() {
 		return noMatchResponse;
 	}
 
 
-	public String getErrorResponse(int category) {
+	public GetMetadataResponseWrapper getErrorResponse(int category) {
 		initErrorResponse(category);
 		return errorResponse;
 	}
 
 	
 	public static ExpectedResponses getResourcesFromFile(){
-		ExpectedResponses expectedresponse = SerializerDeserializer.getJsonFromFile(ExpectedResponses.class, PATH + File.separatorChar + "responses.json");
+		String json = SerializerDeserializer.extractStringFromFile(PATH + File.separatorChar + "responses.json");
+		ExpectedResponses expectedresponse = SerializerDeserializer.deserilizer(json, ExpectedResponses.class);
 		return expectedresponse;
 	}
 	
 	public void initErrorResponse(int category) {
+		errorResponse = null;
 		ErrorResponseCalc errorResponseCalc = new ErrorResponseCalc();
 		int num = errorResponseCalc.errorResponseCalculater(category);
 		//no appropriate error msg
 		if(num != 0){
-			String filename = String.format("error_response_%s.json", num);
-			errorResponse = SerializerDeserializer.ExtractStringFromFile(PATH + File.separatorChar + filename);
+			 String filename = String.format("error_response_%s.json", num);
+			 String json = SerializerDeserializer.extractStringFromFile(PATH + File.separatorChar + filename);
+			 errorResponse = SerializerDeserializer.deserilizer(json, GetMetadataResponseWrapper.class);
 		}
 	}
 
 
+	@SuppressWarnings("unused")
 	private void initNoMatchResponse() {
 		ExpectedResponses expectedresponse = SerializerDeserializer.getJsonFromFile(ExpectedResponses.class, PATH + File.separatorChar +"no_match_response.json");
-		noMatchResponse = expectedresponse.getResponses().get(0).getMetadataResponse();
+		noMatchResponse = expectedresponse.getResponses().get(0).getMetadataResponseWrapper();
+		System.out.println("No match response: " + noMatchResponse);
 	}
 
 

@@ -1,1 +1,22 @@
-{"errorMessage":{"error":[{"errorId":"2005","domain":"CoreRuntime","severity":"Error","category":"Application","message":"Internal application error: java.lang.NullPointerException","subdomain":"Application","parameter":[{"@name":"Param1","__value__":"java.lang.NullPointerException"}]}]}}
+{
+    "getMetadataResponse": {
+        "errorMessage": {
+            "error": [
+                {
+                    "errorId": "2005",
+                    "domain": "CoreRuntime",
+                    "severity": "Error",
+                    "category": "Application",
+                    "message": "Internal application error: java.lang.NullPointerException",
+                    "subdomain": "Application",
+                    "parameter": [
+                        {
+                            "@name": "Param1",
+                            "__value__": "java.lang.NullPointerException"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,8 +1,5 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
 
 /**
 *
@@ -10,28 +7,27 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlType(name = "DataSource")
-@XmlEnum
 public enum DataSource {
 	
-	@XmlEnumValue("SellerTag")
+
     SELLER_TAG("SellerTag"),
-    @XmlEnumValue("Catalog")
+
     CATALOG("Catalog"),
-    @XmlEnumValue("BuyerTag")
+
     BUYER_TAG("BuyerTag"),
-    @XmlEnumValue("Repository")
+
     REPOSITORY("Repository"),
-    @XmlEnumValue("Unified")
+
     UNIFIED("Unified"),
-    @XmlEnumValue("RepositorySellerTag")
+
     REPOSITORY_SELLER_TAG("RepositorySellerTag"),
-    @XmlEnumValue("RepositoryCatalog")
+
     REPOSITORY_CATALOG("RepositoryCatalog"),
-    @XmlEnumValue("RepositoryBuyerTag")
+
     REPOSITORY_BUYER_TAG("RepositoryBuyerTag"),
-    @XmlEnumValue("RepositoryDiscoveryTag")
+
     REPOSITORY_DISCOVERY_TAG("RepositoryDiscoveryTag");
+    
     private final String value;
 
 

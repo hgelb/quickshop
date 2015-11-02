@@ -1,6 +1,6 @@
 package com.ebay.automation.mock.ums.model;
 
-import com.ebay.automation.mock.ums.response.GetMetadataResponse;
+import com.ebay.automation.mock.ums.response.GetMetadataResponseWrapper;
 import com.google.common.base.MoreObjects;
 
 /**
@@ -13,23 +13,23 @@ public class ExpectedResponse {
 
 	private Key key;
 
-	private GetMetadataResponse getMetadataResponse;
+	private GetMetadataResponseWrapper getMetadataResponseWrapper;
 
 	public ExpectedResponse() {
 	}
 
-	public ExpectedResponse(int category, int site, GetMetadataResponse getMetadataResponse) {
+	public ExpectedResponse(int category, int site, GetMetadataResponseWrapper getMetadataResponseWrapper) {
 		this.key = new Key(category, site);
-		this.getMetadataResponse = getMetadataResponse;
+		this.getMetadataResponseWrapper = getMetadataResponseWrapper;
 	}
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this).add("key", key).add("getMetadataResponse", getMetadataResponse).toString();
+		return MoreObjects.toStringHelper(this).add("key", key).add("getMetadataResponseWrapper", getMetadataResponseWrapper).toString();
 	}
 
-	public GetMetadataResponse getMetadataResponse() {
-		return getMetadataResponse;
+	public GetMetadataResponseWrapper getMetadataResponseWrapper() {
+		return getMetadataResponseWrapper;
 	}
 
 	public Key getKey() {

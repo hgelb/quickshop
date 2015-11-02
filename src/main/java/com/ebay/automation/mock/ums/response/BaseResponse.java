@@ -2,12 +2,10 @@ package com.ebay.automation.mock.ums.response;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -15,17 +13,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BaseResponse", propOrder = { "ack", "errorMessage", "version",
-		"timestamp", "extension" })
 public abstract class BaseResponse {
 
-	@XmlElement(required = true)
 	protected AckValue ack;
 	protected ErrorMessage errorMessage;
 	protected String version;
-	@XmlSchemaType(name = "dateTime")
-	protected String timestamp; //XMLGregorianCalendar
+	protected XMLGregorianCalendar timestamp;
 	protected List<ExtensionType> extension;
 
 	
@@ -33,6 +26,25 @@ public abstract class BaseResponse {
 	public BaseResponse() {
 		
 	}
+	
+
+	public BaseResponse(AckValue ack, ErrorMessage errorMessage,
+			String version, XMLGregorianCalendar timestamp,
+			List<ExtensionType> extension) {
+		this.ack = ack;
+		this.errorMessage = errorMessage;
+		this.version = version;
+		this.timestamp = timestamp;
+		this.extension = extension;
+	}
+
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("ack", ack).add("errorMessage", errorMessage).add("version", version).add("timestamp", timestamp).add("extension", extension).toString();
+	}
+
+
 
 	/**
 	 * Gets the value of the ack property.
@@ -54,6 +66,8 @@ public abstract class BaseResponse {
 	public void setAck(AckValue value) {
 		this.ack = value;
 	}
+
+
 
 	/**
 	 * Gets the value of the errorMessage property.
@@ -97,15 +111,6 @@ public abstract class BaseResponse {
 		this.version = value;
 	}
 	
-	
-
-	public String getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
 
 	/**
 	 * Gets the value of the extension property.
@@ -138,25 +143,25 @@ public abstract class BaseResponse {
 	}
 	
 
-//	/**
-//	 * Gets the value of the timestamp property.
-//	 * 
-//	 * @return possible object is {@link XMLGregorianCalendar }
-//	 * 
-//	 */
-//	public XMLGregorianCalendar getTimestamp() {
-//		return timestamp;
-//	}
-//
-//	/**
-//	 * Sets the value of the timestamp property.
-//	 * 
-//	 * @param value
-//	 *            allowed object is {@link XMLGregorianCalendar }
-//	 * 
-//	 */
-//	public void setTimestamp(XMLGregorianCalendar value) {
-//		this.timestamp = value;
-//	}
+	/**
+	 * Gets the value of the timestamp property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getTimestamp() {
+		return timestamp;
+	}
+
+	/**
+	 * Sets the value of the timestamp property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setTimestamp(XMLGregorianCalendar value) {
+		this.timestamp = value;
+	}
 
 }

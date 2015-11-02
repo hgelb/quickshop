@@ -1,16 +1,11 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
 /**
 *
 * @author hgelb
 * @date Oct 27, 2015
 * 
 */
-@XmlType(name = "AckValue")
-@XmlEnum
 public enum AckValue {
 	
 	 /**
@@ -20,7 +15,6 @@ public enum AckValue {
      * 					
      * 
      */
-    @XmlEnumValue("Success")
     SUCCESS("Success"),
 
     /**
@@ -31,7 +25,6 @@ public enum AckValue {
      * 					
      * 
      */
-    @XmlEnumValue("Failure")
     FAILURE("Failure"),
 
     /**
@@ -40,7 +33,6 @@ public enum AckValue {
      * 					
      * 
      */
-    @XmlEnumValue("Warning")
     WARNING("Warning"),
 
     /**
@@ -48,7 +40,6 @@ public enum AckValue {
      * 						The request that triggered the error was processed successfully but with some warnings.				
      * 
      */
-    @XmlEnumValue("PartialFailure")
     PARTIAL_FAILURE("PartialFailure");
     private final String value;
 
@@ -56,11 +47,15 @@ public enum AckValue {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
+   
 
-    public static AckValue fromValue(String v) {
+    public String value() {
+		return value;
+	}
+
+
+
+	public static AckValue fromValue(String v) {
         for (AckValue c: AckValue.values()) {
             if (c.value.equals(v)) {
                 return c;

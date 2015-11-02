@@ -2,11 +2,14 @@ package com.ebay.automation.mock.ums.response;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.google.common.base.MoreObjects;
 
 /**
  *
@@ -14,20 +17,23 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @date Oct 27, 2015
  * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Recommendation", propOrder = { "categoryId",
-		"lastModifiedDate", "tag" })
 public class Recommendation {
 
 	protected int categoryId;
-	@XmlSchemaType(name = "dateTime")
-	protected String lastModifiedDate;//XMLGregorianCalendar
+
+	protected XMLGregorianCalendar lastModifiedDate;
+	
 	protected List<Tag> tag;
 	
 	
 
 	public Recommendation() {
 
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("categoryId", categoryId).add("lastModifiedDate", lastModifiedDate).add("tag", tag).toString();
 	}
 
 	/**
@@ -46,14 +52,6 @@ public class Recommendation {
 		this.categoryId = value;
 	}
 	
-
-	public String getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(String lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
 
 	/**
 	 * Gets the value of the tag property.
@@ -83,28 +81,26 @@ public class Recommendation {
 		}
 		return this.tag;
 	}
-	
-	
-	
 
-//	/**
-//	 * Gets the value of the lastModifiedDate property.
-//	 * 
-//	 * @return possible object is {@link XMLGregorianCalendar }
-//	 * 
-//	 */
-//	public XMLGregorianCalendar getLastModifiedDate() {
-//		return lastModifiedDate;
-//	}
-//
-//	/**
-//	 * Sets the value of the lastModifiedDate property.
-//	 * 
-//	 * @param value
-//	 *            allowed object is {@link XMLGregorianCalendar }
-//	 * 
-//	 */
-//	public void setLastModifiedDate(XMLGregorianCalendar value) {
-//		this.lastModifiedDate = value;
-//	}
+
+	/**
+	 * Gets the value of the lastModifiedDate property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	/**
+	 * Sets the value of the lastModifiedDate property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setLastModifiedDate(XMLGregorianCalendar value) {
+		this.lastModifiedDate = value;
+	}
 }

@@ -1,9 +1,6 @@
 package com.ebay.automation.mock.ums.response;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -11,18 +8,22 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Relationship", propOrder = { "parentName", "parentValue" })
 public class Relationship {
 
-	@XmlElement(required = true)
+
 	protected String parentName;
+	
 	protected String parentValue;
 
 	
 	
 	public Relationship() {
 
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("parentName", parentName).add("parentValue", parentValue).toString();
 	}
 
 	/**

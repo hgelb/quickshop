@@ -2,9 +2,8 @@ package com.ebay.automation.mock.ums.response;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+
+import com.google.common.base.MoreObjects;
 
 /**
 *
@@ -12,16 +11,20 @@ import javax.xml.bind.annotation.XmlType;
 * @date Oct 27, 2015
 * 
 */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Values", propOrder = { "tagValue" })
 public class Values {
 
+	
 	protected List<TagValue> tagValue;
 
 	
 	
 	public Values() {
 
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("tagValue", tagValue).toString();
 	}
 
 
