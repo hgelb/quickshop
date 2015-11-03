@@ -1,6 +1,10 @@
 package com.ebay.automation.mock.ums.utils;
 
 import java.lang.reflect.Type;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -22,8 +26,15 @@ public class XMLGregorianCalendarDeserializer implements JsonDeserializer<XMLGre
 	public XMLGregorianCalendar deserialize(JsonElement json, Type typeOfT,
 			JsonDeserializationContext context) throws JsonParseException {
 		 try {
+			/** XMLGregorianCalendar xmlCalendar = null;
+			 Date date = new Date(json.getAsLong());
+			 GregorianCalendar gCalendar = new GregorianCalendar();
+		     gCalendar.setTime(date);
+		     xmlCalendar =  DatatypeFactory.newInstance().newXMLGregorianCalendar(gCalendar);
+			 return xmlCalendar;**/
 			 return DatatypeFactory.newInstance().newXMLGregorianCalendar(json.getAsString());
-         } catch (Exception e) {
+         } catch (Exception ex) {
+        	 Logger.getLogger(XMLGregorianCalendarDeserializer.class.getName()).log(Level.SEVERE, null, ex);
              return null;
          }	
 	}

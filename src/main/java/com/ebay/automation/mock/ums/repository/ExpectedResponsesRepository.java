@@ -12,7 +12,6 @@ import com.ebay.automation.mock.ums.model.ExpectedResponse;
 import com.ebay.automation.mock.ums.model.ExpectedResponses;
 import com.ebay.automation.mock.ums.model.Key;
 import com.ebay.automation.mock.ums.response.GetMetadataResponseWrapper;
-import com.ebay.automation.mock.ums.response.error.ErrorResponseCalc;
 import com.ebay.automation.mock.ums.utils.SerializerDeserializer;
 import com.google.common.collect.Maps;
 /**
@@ -28,15 +27,19 @@ public class ExpectedResponsesRepository {
 	private ApplicationContext context;
 
 	private Map<Key, GetMetadataResponseWrapper> expectedResponsesMap = null;
-	private GetMetadataResponseWrapper noMatchResponse = null;
-	private GetMetadataResponseWrapper errorResponse = null;
+
+	private Map<Key, GetMetadataResponseWrapper> errorResponsesMap = null;
 
 	private final static String PATH = "responsedata";
 	
+
 	public ExpectedResponsesRepository() {
-		ExpectedResponses exp = getResourcesFromFile();
+		
+		ExpectedResponses exp = getResourcesFromFile("responses");
 		initExpectedResponsesMap(exp.getResponses());
-//		initNoMatchResponse();
+		ExpectedResponses errors = getResourcesFromFile("error_responses");
+		initErrorResponsesMap(errors.getResponses());
+
 	}
 
 
@@ -50,6 +53,18 @@ public class ExpectedResponsesRepository {
 		}
 		System.out.println("Expected Responses: " + expectedResponsesMap);
 	}
+	
+	private void initErrorResponsesMap(List<ExpectedResponse> expectedResponsesList) {
+		errorResponsesMap = Maps.newHashMap();
+		for (ExpectedResponse expectedResponse : expectedResponsesList) {
+				if (errorResponsesMap.containsKey(expectedResponse.getKey())) {
+					throw new RuntimeException("Response data json contains duplicate categories: "+ expectedResponse.getKey());
+				}
+				errorResponsesMap.put(expectedResponse.getKey(), expectedResponse.getMetadataResponseWrapper());		
+		}
+		System.out.println("Error Responses: " + errorResponsesMap);
+	}
+	
 
 	public Map<Key, GetMetadataResponseWrapper> getExpectedResponsesMap() {
 		return expectedResponsesMap;
@@ -59,44 +74,19 @@ public class ExpectedResponsesRepository {
 		return expectedResponsesMap.get(new Key(category, site));
 
 	}
+	
+	public GetMetadataResponseWrapper getErrorResponsesByCategory(int category) {
+		return errorResponsesMap.get(new Key(category, 0));
 
-	public GetMetadataResponseWrapper getNoMatchResponse() {
-		return noMatchResponse;
-	}
-
-
-	public GetMetadataResponseWrapper getErrorResponse(int category) {
-		initErrorResponse(category);
-		return errorResponse;
 	}
 
 	
-	public static ExpectedResponses getResourcesFromFile(){
-		String json = SerializerDeserializer.extractStringFromFile(PATH + File.separatorChar + "responses.json");
+	public static ExpectedResponses getResourcesFromFile(String fileName){
+		String filePath = String.format(PATH + File.separatorChar + "%s.json", fileName);
+		String json = SerializerDeserializer.extractStringFromFile(filePath);
 		ExpectedResponses expectedresponse = SerializerDeserializer.deserilizer(json, ExpectedResponses.class);
 		return expectedresponse;
 	}
-	
-	public void initErrorResponse(int category) {
-		errorResponse = null;
-		ErrorResponseCalc errorResponseCalc = new ErrorResponseCalc();
-		int num = errorResponseCalc.errorResponseCalculater(category);
-		//no appropriate error msg
-		if(num != 0){
-			 String filename = String.format("error_response_%s.json", num);
-			 String json = SerializerDeserializer.extractStringFromFile(PATH + File.separatorChar + filename);
-			 errorResponse = SerializerDeserializer.deserilizer(json, GetMetadataResponseWrapper.class);
-		}
-	}
-
-
-	@SuppressWarnings("unused")
-	private void initNoMatchResponse() {
-		ExpectedResponses expectedresponse = SerializerDeserializer.getJsonFromFile(ExpectedResponses.class, PATH + File.separatorChar +"no_match_response.json");
-		noMatchResponse = expectedresponse.getResponses().get(0).getMetadataResponseWrapper();
-		System.out.println("No match response: " + noMatchResponse);
-	}
-
 
 
 }

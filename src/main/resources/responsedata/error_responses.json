@@ -1,0 +1,108 @@
+{
+    "responses": [
+        {
+            "key": {
+                "category": "48163",
+                "site": 0
+            },
+            "getMetadataResponseWrapper": {
+                "getMetadataResponse": {
+                    "errorMessage": {
+                        "error": [
+                            {
+                                "errorId": 2003,
+                                "domain": "CoreRuntime",
+                                "subdomain": "Inbound_Meta_Data",
+                                "severity": "Error",
+                                "category": "Request",
+                                "message": "MissingSOAservicenameheader"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": {
+                "category": "9388",
+                "site": 0
+            },
+            "getMetadataResponseWrapper": {
+                "getMetadataResponse": {
+                    "errorMessage": {
+                        "error": [
+                            {
+                                "errorId": "2038",
+                                "domain": "CoreRuntime",
+                                "severity": "Error",
+                                "category": "System",
+                                "message": "Missing SOA operation name header",
+                                "subdomain": "System"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": {
+                "category": "27386",
+                "site": 0
+            },
+            "getMetadataResponseWrapper": {
+                "getMetadataResponse": {
+                    "errorMessage": {
+                        "error": [
+                            {
+                                "errorId": "2005",
+                                "domain": "CoreRuntime",
+                                "severity": "Error",
+                                "category": "Application",
+                                "message": "Internal application error: java.lang.NullPointerException",
+                                "subdomain": "Application",
+                                "parameter": [
+                                    {
+                                        "@name": "Param1",
+                                        "__value__": "java.lang.NullPointerException"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": {
+                "category": "51542",
+                "site": 0
+            },
+            "getMetadataResponseWrapper": {
+                "getMetadataResponse": {
+                    "ack": "Failure",
+                    "errorMessage": {
+                        "error": [
+                            {
+                                "errorId": "10003",
+                                "domain": "UMS",
+                                "severity": "Error",
+                                "category": "Request",
+                                "message": "[RequiredParameterNotSpecifiedError] Required parameter CategoryId not specified",
+                                "parameter": [
+                                    {
+                                        "@name": "CategoryId"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "version": "1.0.0",
+                    "timestamp": "2015-10-27T16:17:33.478Z",
+                    "recommendations": {
+                        "siteId": "0"
+                    }
+                }
+            }
+        }
+    ]
+}

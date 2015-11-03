@@ -61,7 +61,7 @@ public class ExpectedResponsesRepositoryTest extends AbstractJUnit4SpringContext
 	  public void testExpectedErrorResponse() {
 		ExpectedResponsesRepository expectedResponsesRepository = new ExpectedResponsesRepository();  
 		
-		GetMetadataResponse actualResponse = expectedResponsesRepository.getErrorResponse(48163).getGetMetadataResponse();
+		GetMetadataResponse actualResponse = expectedResponsesRepository.getErrorResponsesByCategory(48163).getGetMetadataResponse();
 		ErrorMessage errorMessage = actualResponse.getErrorMessage();
 		assertNotNull("ErrorMessage in null", errorMessage);
 		ErrorData errorData = errorMessage.getError().get(0);

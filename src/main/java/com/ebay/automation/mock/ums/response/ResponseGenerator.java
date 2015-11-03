@@ -32,20 +32,18 @@ public class ResponseGenerator {
 	}
 
 	private GetMetadataResponseWrapper expectedResponse(int category, int site) {
-		GetMetadataResponseWrapper metadataResponse = expectedResponseRepository.getExpectedResponsesByCategoryAndSite(category, site);
-		if (metadataResponse == null) {
-			return expectedResponseRepository.getNoMatchResponse();
-		}
-		return metadataResponse;
+		return expectedResponseRepository.getExpectedResponsesByCategoryAndSite(category, site);
 	}
 
-	private GetMetadataResponseWrapper invalidSiteResponse(int site) {
-		return expectedResponseRepository.getErrorResponse(site);
-	}
+	
+	
+//	private GetMetadataResponseWrapper invalidSiteResponse(int site) {
+//		return expectedResponseRepository.getErrorResponse(site);
+//	}
 	
 	
 	public GetMetadataResponseWrapper getErrorResponse(int category) {
-		return expectedResponseRepository.getErrorResponse(category);
+		return expectedResponseRepository.getErrorResponsesByCategory(category);
 	}
 
 }
