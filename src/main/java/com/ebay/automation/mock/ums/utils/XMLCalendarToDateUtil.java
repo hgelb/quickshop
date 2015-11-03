@@ -11,6 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @author hgelb
  * @date Nov 3, 2015
  * @link {http://javarevisited.blogspot.co.il/2011/12/java-string-replace-example-tutorial.html}
+ * @link {http://grepcode.com/file/repository.springsource.com/org.apache.xerces/com.springsource.org.apache.xerces/2.8.1/org/apache/xerces/jaxp/datatype/XMLGregorianCalendarImpl.java#XMLGregorianCalendarImpl.%3Cinit%3E%28%29}
  */
 public class XMLCalendarToDateUtil {
 	
