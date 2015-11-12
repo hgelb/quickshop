@@ -39,7 +39,9 @@ public class UmsController {
 			
 			@RequestParam(value = "X-EBAY-SOA-RESPONSE-DATA-FORMAT", required = false, defaultValue = "JSON") String responseDataFormat,
 			
-			@RequestParam(value = "X-EBAY-SOA-OPERATION-NAME", required = false, defaultValue="getMetadata") String soaOperationName,
+			@RequestParam(value = "X-EBAY-SOA-OPERATION-NAME", required = false, defaultValue = "getMetadata") String soaOperationName,
+			
+			@RequestParam(value = "dataSource" , required = false, defaultValue = "Unified") String dataSource,
 			
 			@RequestParam(value = "categoryId", required = true) int category,
 			
