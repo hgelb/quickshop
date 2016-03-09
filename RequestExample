@@ -1,0 +1,2 @@
+request:
+http://localhost:8080/QuickShop/quickshop?id=123
